@@ -1,5 +1,13 @@
+import Header from "./components/header";
+import Form from "./components/form";
+import Table from "./components/table";
+
 function App() {
-  return <h1>React Investment Calculator made by AIATBEK KUBANOV</h1>;
+  return (
+    <div>
+      <Header></Header>;<Form></Form>;<Table></Table>
+    </div>
+  );
 }
 
 export default App;
