@@ -1,6 +1,8 @@
 import React from "react";
+import { formatter } from "../util/investment";
 
 function Table(props) {
+  let totalInterest = 0;
   return (
     <div>
       <table id="result">
@@ -14,13 +16,22 @@ function Table(props) {
           </tr>
         </thead>
         <tbody id="result-name">
-          <tr>
-            <td>1</td>
-            <td>$16,725</td>
-            <td>$825</td>
-            <td>$825</td>
-            <td>$15900</td>
-          </tr>
+          {props.info.map((obj) => {
+            totalInterest += parseFloat(obj.interest);
+            let investedCapital =
+              parseFloat(obj.valueEndOfYear) - totalInterest;
+            // let investedCapital = obj.initialInvest;
+            console.log(totalInterest);
+            return (
+              <tr key={`${Math.random(1)}`}>
+                <td>{obj.year}</td>
+                <td>{formatter.format(obj.valueEndOfYear)}</td>
+                <td>{formatter.format(obj.interest)}</td>
+                <td>{formatter.format(totalInterest)}</td>
+                <td>{formatter.format(investedCapital)}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
